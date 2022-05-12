@@ -45,13 +45,15 @@ def circle(start, end):
 
 def rectangle(start, end):
     up()
-    goto(start.x, start.y+2)
+    goto(start.x, start.y)
     down()
     begin_fill()
 
-    for count in range(4):
+    for count in range(2):
         forward(end.x - start.x)
-        left(60)
+        left(90)
+        forward(end.y - start.y)
+        left(90)
     end_fill()
 
 def triangle(start, end):
