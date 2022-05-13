@@ -52,7 +52,7 @@ def move():
         vector(0, -2)
     ]
 
-    if not inside(head) or head in snake:
+    if head in snake:
         square(head.x, head.y, 9, 'red')
         update()
         return
