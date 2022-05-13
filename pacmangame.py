@@ -116,7 +116,7 @@ def move():
     if tiles[index] == 1:
         tiles[index] = 2
         state['score'] += 1
-        x = (index % 20) * 20 - 200
+        x = (index % 20) * 20 - 200 
         y = 180 - (index // 20) * 20
         square(x, y)
 
