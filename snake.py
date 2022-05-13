@@ -9,6 +9,7 @@ Exercises
 
 """
 import random
+from random import choice
 from turtle import *
 from random import randrange
 from freegames import square, vector
@@ -18,6 +19,15 @@ from freegames import square, vector
 food = vector(0, 0)
 snake = [vector(10, 0)]
 aim = vector(0, -10)
+food_aim = vector(0, 2)
+
+
+def eaten(head, food):
+    "Return True if head is near the food."
+    if (food.x - 10) < head.x and head.x < (food.x + 10) and (food.y - 10) < head.y and head.y < (food.y + 10):
+        return True
+    else:
+        return False
 
 
 def change(x, y):
@@ -34,30 +44,56 @@ def move():
     head = snake[-1].copy()
     head.move(aim)
     colors = ['blue','green','yellow','brown','grey']
+    # Food aim direction options
+    food_aim_options = [
+        vector(2, 0),
+        vector(-2, 0),
+        vector(0, 2),
+        vector(0, -2)
+    ]
 
-    if not inside(head) or head in snake:
+    if head in snake:
         square(head.x, head.y, 9, 'red')
         update()
         return
 
-    snake.append(head)
+    snake.append(head) # Add new head to snake
 
-    if head == food:
-        print('Snake:', len(snake))
+    # Move food in the same direction if its inside the canvas
+    if inside(food):
+        food.move(food_aim)
+    else:
+        # Put food in random position
         food.x = randrange(-15, 15) * 10
         food.y = randrange(-15, 15) * 10
+        # Change its direction
+        new_aim = choice(food_aim_options)
+        food_aim.x = new_aim.x
+        food_aim.y = new_aim.y
+
+    # If food has been eaten
+    if eaten(head, food):
+        print('Snake:', len(snake))
+        # Put food in random position
+        food.x = randrange(-15, 15) * 10
+        food.y = randrange(-15, 15) * 10
+        # Change its direction
+        new_aim = choice(food_aim_options)
+        food_aim.x = new_aim.x
+        food_aim.y = new_aim.y
     else:
         snake.pop(0)
 
     clear()
 
+    # Draw body
     for body in snake:
         square(body.x, body.y, 9, 'black')
 
-    for body in snake:
-        square(head.x, head.y, 9, random.choice(colors))
-
+    # Change head and food color
+    square(head.x, head.y, 9, random.choice(colors))
     square(food.x, food.y, 9, random.choice(colors))
+
     update()
     ontimer(move, 100)
 
