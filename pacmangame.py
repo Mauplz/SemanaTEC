@@ -85,7 +85,7 @@ def valid(point):
 
 def world():
     "Draw world using path."
-    bgcolor('black')
+    bgcolor('pink')
     path.color('blue')
 
     for index in range(len(tiles)):
@@ -129,14 +129,14 @@ def move():
             point.move(course)
         else:
             options = [
-                vector(5, 0),
-                vector(-5, 0),
-                vector(0, 5),
-                vector(0, -5),
-                vector(10, 0),
-                vector(-10, 0),
-                vector(0, 10),
-                vector(0, -10),
+                vector(15, 0),
+                vector(-15, 0),
+                vector(0, 15),
+                vector(0, -15),
+                vector(20, 0),
+                vector(-20, 0),
+                vector(0, 20),
+                vector(0, -20),
             ]
             plan = choice(options)
             course.x = plan.x
@@ -163,8 +163,10 @@ def change(x, y):
 setup(420, 420, 370, 0)
 hideturtle()
 tracer(False)
+writer.up()
 writer.goto(160, 160)
-writer.color('white')
+writer.down()
+writer.color('black')
 writer.write(state['score'])
 listen()
 onkey(lambda: change(5, 0), 'Right')
