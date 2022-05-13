@@ -15,3 +15,7 @@ Demo of the use of Github for Semana Tec
 - Cambiar la posición inicial de pacman - Marco
 
 ### Paint:
+- Añadir nuevo color - Marco
+- Completar círculo - Mau
+- Completar rectángulo - Mau
+- Completar triángulo - Mau
