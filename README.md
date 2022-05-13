@@ -12,5 +12,6 @@ Demo of the use of Github for Semana Tec
 
 ### Pacman:
 - Agregar otro fantasma - Marco
+- Cambiar la posición inicial de pacman - Marco
 
 ### Paint:
